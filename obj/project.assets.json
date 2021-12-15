@@ -213,11 +213,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/scdk/Desktop/SimpleExemple/backend/backend.csproj",
+      "projectUniqueName": "/home/scdk/Documents/Computação Evolutiva/SimpleExemple/backend/backend.csproj",
       "projectName": "backend",
-      "projectPath": "/home/scdk/Desktop/SimpleExemple/backend/backend.csproj",
+      "projectPath": "/home/scdk/Documents/Computação Evolutiva/SimpleExemple/backend/backend.csproj",
       "packagesPath": "/home/scdk/.nuget/packages/",
-      "outputPath": "/home/scdk/Desktop/SimpleExemple/backend/obj/",
+      "outputPath": "/home/scdk/Documents/Computação Evolutiva/SimpleExemple/backend/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/scdk/.nuget/NuGet/NuGet.Config"

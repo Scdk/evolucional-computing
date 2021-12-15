@@ -25,3 +25,30 @@
 /home/scdk/Desktop/SimpleExemple/backend/obj/Debug/net6.0/ref/backend.dll
 /home/scdk/Desktop/SimpleExemple/backend/obj/Debug/net6.0/backend.pdb
 /home/scdk/Desktop/SimpleExemple/backend/obj/Debug/net6.0/backend.genruntimeconfig.cache
+/home/scdk/Documents/Computação Evolutiva/SimpleExemple/backend/bin/Debug/net6.0/appsettings.Development.json
+/home/scdk/Documents/Computação Evolutiva/SimpleExemple/backend/bin/Debug/net6.0/appsettings.json
+/home/scdk/Documents/Computação Evolutiva/SimpleExemple/backend/bin/Debug/net6.0/backend
+/home/scdk/Documents/Computação Evolutiva/SimpleExemple/backend/bin/Debug/net6.0/backend.deps.json
+/home/scdk/Documents/Computação Evolutiva/SimpleExemple/backend/bin/Debug/net6.0/backend.runtimeconfig.json
+/home/scdk/Documents/Computação Evolutiva/SimpleExemple/backend/bin/Debug/net6.0/backend.dll
+/home/scdk/Documents/Computação Evolutiva/SimpleExemple/backend/bin/Debug/net6.0/ref/backend.dll
+/home/scdk/Documents/Computação Evolutiva/SimpleExemple/backend/bin/Debug/net6.0/backend.pdb
+/home/scdk/Documents/Computação Evolutiva/SimpleExemple/backend/bin/Debug/net6.0/Microsoft.OpenApi.dll
+/home/scdk/Documents/Computação Evolutiva/SimpleExemple/backend/bin/Debug/net6.0/Swashbuckle.AspNetCore.Swagger.dll
+/home/scdk/Documents/Computação Evolutiva/SimpleExemple/backend/bin/Debug/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+/home/scdk/Documents/Computação Evolutiva/SimpleExemple/backend/bin/Debug/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+/home/scdk/Documents/Computação Evolutiva/SimpleExemple/backend/obj/Debug/net6.0/backend.csproj.AssemblyReference.cache
+/home/scdk/Documents/Computação Evolutiva/SimpleExemple/backend/obj/Debug/net6.0/backend.GeneratedMSBuildEditorConfig.editorconfig
+/home/scdk/Documents/Computação Evolutiva/SimpleExemple/backend/obj/Debug/net6.0/backend.AssemblyInfoInputs.cache
+/home/scdk/Documents/Computação Evolutiva/SimpleExemple/backend/obj/Debug/net6.0/backend.AssemblyInfo.cs
+/home/scdk/Documents/Computação Evolutiva/SimpleExemple/backend/obj/Debug/net6.0/backend.csproj.CoreCompileInputs.cache
+/home/scdk/Documents/Computação Evolutiva/SimpleExemple/backend/obj/Debug/net6.0/backend.MvcApplicationPartsAssemblyInfo.cs
+/home/scdk/Documents/Computação Evolutiva/SimpleExemple/backend/obj/Debug/net6.0/backend.MvcApplicationPartsAssemblyInfo.cache
+/home/scdk/Documents/Computação Evolutiva/SimpleExemple/backend/obj/Debug/net6.0/staticwebassets.build.json
+/home/scdk/Documents/Computação Evolutiva/SimpleExemple/backend/obj/Debug/net6.0/staticwebassets.development.json
+/home/scdk/Documents/Computação Evolutiva/SimpleExemple/backend/obj/Debug/net6.0/scopedcss/bundle/backend.styles.css
+/home/scdk/Documents/Computação Evolutiva/SimpleExemple/backend/obj/Debug/net6.0/backend.csproj.CopyComplete
+/home/scdk/Documents/Computação Evolutiva/SimpleExemple/backend/obj/Debug/net6.0/backend.dll
+/home/scdk/Documents/Computação Evolutiva/SimpleExemple/backend/obj/Debug/net6.0/ref/backend.dll
+/home/scdk/Documents/Computação Evolutiva/SimpleExemple/backend/obj/Debug/net6.0/backend.pdb
+/home/scdk/Documents/Computação Evolutiva/SimpleExemple/backend/obj/Debug/net6.0/backend.genruntimeconfig.cache
