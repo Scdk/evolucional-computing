@@ -1,6 +1,6 @@
 namespace backend.Models
 {
-    public class SimpleExempleConfiguration
+    public class MaximizationOfFunctionConfiguration
     {
         public int populationSize { get; set; }
         public double crossoverRate { get; set; }

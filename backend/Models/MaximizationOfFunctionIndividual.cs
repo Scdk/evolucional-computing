@@ -1,26 +1,37 @@
 namespace backend.Models
 {
-    public class Individual
+    public class MaximizationOfFunctionIndividual
     {
-        public Individual()
+        public MaximizationOfFunctionIndividual()
         {
             int number = new Random().Next(0,1024);
             binaryRepresentation = GenerateBinaryRepresentation(number);
         }
-        public double realValue 
+        public double realValueOfX
         { 
             get
             {
-                return (float)Convert.ToInt32(this.binaryRepresentation, 2) / 2;
+                float numericRepresentation = (float)Convert.ToInt32(this.binaryRepresentation.Substring(0, 5), 2);
+                return numericRepresentation * 4/32;
             } 
             set
             {
-                realValue = value;
+                realValueOfX = value;
+            }
+        }
+        public double realValueOfY
+        { 
+            get
+            {
+                float numericRepresentation = (float)Convert.ToInt32(this.binaryRepresentation.Substring(5), 2);
+                return numericRepresentation * 2/32;
+            } 
+            set
+            {
+                realValueOfY = value;
             }
         }
         public string binaryRepresentation { get; set; }
-        public double selectionProbability  { get; set; }
-
         private string GenerateBinaryRepresentation(int number)
         {
             string binaryRepresentation = Convert.ToString(number, 2);

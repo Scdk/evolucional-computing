@@ -1,9 +1,7 @@
 using System.Text.Json;
-using Models.Individual;
-using Models.SimpleExempleConfiguration;
-using Models.Response;
+using backend.Models;
 
-namespace SimpleExempleService
+namespace backend.Services
 {
     public class SimpleExemple
     {

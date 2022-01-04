@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using SimpleExempleService;
+using backend.Services;
 using System.Text.Json;
-using Models.SimpleExempleConfiguration;
+using backend.Models;
 
 namespace backend.Controllers;
 
