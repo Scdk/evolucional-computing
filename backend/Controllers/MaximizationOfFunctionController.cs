@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using backend.Services;
 using System.Text.Json;
 using backend.Models;
+using Microsoft.AspNetCore.Cors;
 
 namespace backend.Controllers;
 

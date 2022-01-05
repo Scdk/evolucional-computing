@@ -1,0 +1,36 @@
+<div class="container-md">
+    <div class="row">
+    
+      <div class="col-sm">
+        <form [formGroup]="postForm" (ngSubmit)="callingFunction()">
+          <h3>Maximization of a Function</h3><br>    
+        
+          <label>
+            <p>Population Size</p>
+            <input type="text" formControlName="populationSize">
+          </label> <br><br>
+
+          <label>
+            <p>Crossover Rate</p>
+            <input type="text" formControlName="crossoverRate">
+          </label> <br><br>
+
+          <label>
+            <p>MutationRate</p>
+            <input type="text" formControlName="mutationRate">
+          </label> <br><br>
+
+          <label>
+            <p>Number Of Generation</p>
+            <input type="text" formControlName="numberOfGenerations">
+          </label> <br><br>
+          <br>
+        
+            <button type="submit" class="btn btn-success" [disabled]="!postForm.valid">Optimize</button>
+        </form>
+      </div>
+      <div class="col-sm">
+        <div echarts [options]="options" class="demo-chart"></div>
+      </div>
+    </div>
+  </div>
