@@ -5,7 +5,7 @@ import { MaximizationOfFunctionComponent } from './maximization-of-function/maxi
 import { SimpleExempleComponent } from './simple-exemple/simple-exemple.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/maximization-of-function', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'simple-exemple', component: SimpleExempleComponent},
   { path: 'maximization-of-function', component: MaximizationOfFunctionComponent}

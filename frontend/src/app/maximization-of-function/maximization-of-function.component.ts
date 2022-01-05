@@ -10,7 +10,9 @@ import { MOFService } from '../services/maximization-of-function.service';
 })
 export class MaximizationOfFunctionComponent implements OnInit {
 
-  options: any
+  options: any;
+  fitnestIndividualValueOfX : any;
+  fitnestIndividualValueOfY : any;
 
   postForm = this.fb.group({
     populationSize: [''],
@@ -46,35 +48,66 @@ export class MaximizationOfFunctionComponent implements OnInit {
     var avarageFitness = data.map((x: MOFResponse) => 
       x.generationAvarageFitness
     );
+    this.fitnestIndividualValueOfX = data[data.length - 1].fittestIndividualValueOfX;
+    this.fitnestIndividualValueOfY = data[data.length - 1].fittestIndividualValueOfY;
 
     this.options = {
       title: {
-        text: 'Maximization of a Function',
+        text: 'Generation X Fitness',
         left: 'center'
       },
       legend: {
-        data: ['Target Function'],
-        align: 'left',
+        data: ['Generations', 'Fitness'],
+        align: 'center',
       },
       tooltip: {},
       xAxis: {
+        name: 'Generations',
+        nameLocation: 'center',
+        nameGap: 30,
+        nameTextStyle: {
+          fontWeight: 'bold',
+          fontSize: 18,
+          align: 'center',
+          verticalAlign: 'top'
+        },
         data: generations,
+        type: "category",
         silent: false,
         splitLine: {
           show: false,
         },
       },
-      yAxis: {
-      },
+      yAxis: [
+        {
+          name: 'Fitness',
+          nameLocation: 'center',
+          nameGap: 30,
+          nameTextStyle: {
+            fontWeight: 'bold',
+            fontSize: 18,
+            align: 'center',
+            verticalAlign: 'bottom'
+          },
+        }
+      ],
       dataZoom: [
         {
           show: true,
           type: 'inside',
           filterMode: 'none',
           xAxisIndex: [0],
-          startValue: 0,
-          endValue: 1024
-        }
+          start: 0,
+          end: 100
+        },
+        {
+          show: true,
+          type: 'inside',
+          filterMode: 'none',
+          yAxisIndex: [0],
+          start: 65,
+          end: 100
+        },
       ],
       series: [
         {
@@ -94,5 +127,4 @@ export class MaximizationOfFunctionComponent implements OnInit {
       animationDelayUpdate: (idx: any) => idx * 5,
     };
   }
-
 }

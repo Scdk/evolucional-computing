@@ -8,13 +8,6 @@ namespace backend.Services
         private List<MaximizationOfFunctionIndividual> population = new List<MaximizationOfFunctionIndividual>{};
         private MaximizationOfFunctionConfiguration config = new MaximizationOfFunctionConfiguration();
 
-        public MaximizationOfFunction(){
-            config.populationSize = 50;
-            config.crossoverRate = 0.6;
-            config.mutationRate = 0.1;
-            config.numberOfGenerations = 5;
-        }
-
         public List<MaximizationOfFunctionResponse> main(string configuration)
         {
             config = JsonSerializer.Deserialize<MaximizationOfFunctionConfiguration>(configuration);
@@ -102,6 +95,7 @@ namespace backend.Services
                 }
                 else newBinaryRepresentataion += character;
             }
+            individual.binaryRepresentation = newBinaryRepresentataion; 
             return individual;
         }
 
@@ -118,13 +112,15 @@ namespace backend.Services
                 {
                     child1 = Crossover(parent1, parent2);
                     child2 = Crossover(parent2, parent1);
-
-                    if (new Random().NextDouble() <= config.mutationRate ) newGeneration.Add(Mutation(child1));
-                    else newGeneration.Add(child1);
-
-                    if (new Random().NextDouble() <= config.mutationRate ) newGeneration.Add(Mutation(child2));
-                    else newGeneration.Add(child2);
                 }
+                else
+                {
+                    child1 = parent1;
+                    child2 = parent2;
+                }
+
+                newGeneration.Add(Mutation(child1));
+                newGeneration.Add(Mutation(child2));
             }
             population = newGeneration;
         }
@@ -138,24 +134,14 @@ namespace backend.Services
                 reponses.Add(new MaximizationOfFunctionResponse{
                     Generation = count,
                     FittestIndividualFitness = FitnessFunction(fittestIndividual.realValueOfX, fittestIndividual.realValueOfY),
-                    GenerationAvarageFitness = GetGenerationAvarageFitness()
+                    GenerationAvarageFitness = GetGenerationAvarageFitness(),
+                    FittestIndividualValueOfX = fittestIndividual.realValueOfX,
+                    FittestIndividualValueOfY = fittestIndividual.realValueOfY
                 });
                 GenerateNewPopulation();
                 
             }
             return reponses;
         }
-
-        // public void Test()
-        // {
-        //     GenerateInitialPopulation();
-        //     var list = MakeListOfIndividualsFitness();
-        //     foreach(var individual in list)
-        //     {
-        //         Console.Write(individual);
-        //     }
-            
-        // }
-
     }
 }

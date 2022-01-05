@@ -1,4 +1,4 @@
-<div class="container-md">
+<div class="container-md" style="padding: 50px 0px;">
     <div class="row">
     
       <div class="col-sm">
@@ -29,8 +29,27 @@
             <button type="submit" class="btn btn-success" [disabled]="!postForm.valid">Optimize</button>
         </form>
       </div>
-      <div class="col-sm">
+      <div *ngIf="fitnestIndividualValueOfX && fitnestIndividualValueOfY" class="col-sm">
         <div echarts [options]="options" class="demo-chart"></div>
+        <table class="table" style="text-align: center; table-layout: fixed;">
+          <thead>
+            <tr><th colspan="2" scope="col">Best Result</th></tr>
+            <tr>
+              <th scope="col">X</th>
+              <th scope="col">Y</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                {{fitnestIndividualValueOfX}}
+              </td>
+              <td>
+                {{fitnestIndividualValueOfY}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
