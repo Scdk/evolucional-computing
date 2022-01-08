@@ -1,16 +1,18 @@
 using System.Text.Json;
-using backend.Models;
+using backend.Models.Individuals;
+using backend.Models.Configurations;
+using backend.Models.Responses;
 
 namespace backend.Services
 {
     public class MaximizationOfFunction
     {
         private List<MaximizationOfFunctionIndividual> population = new List<MaximizationOfFunctionIndividual>{};
-        private MaximizationOfFunctionConfiguration config = new MaximizationOfFunctionConfiguration();
+        private BasicConfiguration config = new BasicConfiguration();
 
         public List<MaximizationOfFunctionResponse> main(string configuration)
         {
-            config = JsonSerializer.Deserialize<MaximizationOfFunctionConfiguration>(configuration);
+            config = JsonSerializer.Deserialize<BasicConfiguration>(configuration);
             GenerateInitialPopulation();
             return GetResponses(config.numberOfGenerations);
         }

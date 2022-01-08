@@ -1,16 +1,18 @@
 using System.Text.Json;
-using backend.Models;
+using backend.Models.Individuals;
+using backend.Models.Configurations;
+using backend.Models.Responses;
 
 namespace backend.Services
 {
     public class SimpleExemple
     {
         private List<Individual> population = new List<Individual>{};
-        private SimpleExempleConfiguration config = new SimpleExempleConfiguration();
+        private BasicConfiguration config = new BasicConfiguration();
 
         public List<Response> main(string configuration)
         {
-            config = JsonSerializer.Deserialize<SimpleExempleConfiguration>(configuration);
+            config = JsonSerializer.Deserialize<BasicConfiguration>(configuration);
             GenerateInitialPopulation();
             return GetResponses(config.numberOfGenerations);
         }

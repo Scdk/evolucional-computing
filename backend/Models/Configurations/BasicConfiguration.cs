@@ -1,6 +1,6 @@
-namespace backend.Models
+namespace backend.Models.Configurations
 {
-    public class SimpleExempleConfiguration
+    public class BasicConfiguration
     {
         public int populationSize { get; set; }
         public double crossoverRate { get; set; }
