@@ -6,5 +6,7 @@ namespace backend.Models.Responses
         public double FittestIndividualFitness { get; set; }
         public double GenerationAvarageFitness { get; set; }
         public List<String> Scheduling { get; set; }
+        public List<int> LiquidPotencies { get; set; }
+        public double FittestIndividualStandardDeviation { get; set; }
     }
 }

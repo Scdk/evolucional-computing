@@ -16,11 +16,4 @@ public class MaxPotController : Controller
     {
         return Json(maximizationOfPotency.main(JsonSerializer.Serialize(configuration)));
     }
-
-    [Route("test")]
-    [HttpPost]
-    public void Test([FromBody]BasicConfiguration configuration)
-    {
-        maximizationOfPotency.test(JsonSerializer.Serialize(configuration));
-    }
 }

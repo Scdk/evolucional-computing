@@ -32,6 +32,12 @@ namespace backend.Services
 
         private double FitnessFunction (MaxPotIndividual individual)
         {
+            List<int> listOfPl = GetListOfPl(individual);
+            return listOfPl.Sum() - StandardDeviation(listOfPl);
+        }
+
+        private List<int> GetListOfPl(MaxPotIndividual individual)
+        {
             List<int> listOfPl = new List<int> {};
             int pt = 150;
             
@@ -46,13 +52,8 @@ namespace backend.Services
                 }
                 listOfPl.Add(TargetFunction(pt, pp, interval.demandMaxPot));
             }
-            foreach (var item in listOfPl)
-            {
-                Console.Write(item);
-                Console.Write("\n");
-            }
-            Console.Write("\n");
-            return listOfPl.Sum() - StandardDeviation(listOfPl);
+
+            return listOfPl;
         }
 
         private double StandardDeviation(List<int> listOfPl)
@@ -177,7 +178,9 @@ namespace backend.Services
                     Generation = count,
                     FittestIndividualFitness = FitnessFunction(fittestIndividual),
                     GenerationAvarageFitness = GetGenerationAvarageFitness(),
-                    Scheduling = GetScheduling(fittestIndividual)
+                    Scheduling = GetScheduling(fittestIndividual),
+                    LiquidPotencies = GetListOfPl(fittestIndividual),
+                    FittestIndividualStandardDeviation = StandardDeviation(GetListOfPl(fittestIndividual))
                 });
                 GenerateNewPopulation();
                 
@@ -193,18 +196,6 @@ namespace backend.Services
                 result.Add(interval.machinesActivated);
             }
             return result;
-        }
-
-
-        public void test(string configuration)
-        {
-            config = JsonSerializer.Deserialize<BasicConfiguration>(configuration);
-            GenerateInitialPopulation();
-            for (int count = 0; count < config.numberOfGenerations; count++)
-            {
-                MaxPotIndividual fittestIndividual = FindFittestIndividualOfGeneration();
-                GenerateNewPopulation();
-            }
         }
     }
 }
