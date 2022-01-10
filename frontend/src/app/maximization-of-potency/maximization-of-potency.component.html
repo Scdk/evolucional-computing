@@ -1,0 +1,101 @@
+<div class="container-md" style="padding: 50px 0px;">
+    <div class="row">
+    
+      <div class="col-sm">
+        <form [formGroup]="postForm" (ngSubmit)="callingFunction()">
+          <h3>Maximization of a Potency</h3><br>    
+        
+          <label>
+            <p>Population Size</p>
+            <input type="text" formControlName="populationSize">
+          </label> <br><br>
+
+          <label>
+            <p>Crossover Rate</p>
+            <input type="text" formControlName="crossoverRate">
+          </label> <br><br>
+
+          <label>
+            <p>MutationRate</p>
+            <input type="text" formControlName="mutationRate">
+          </label> <br><br>
+
+          <label>
+            <p>Number Of Generation</p>
+            <input type="text" formControlName="numberOfGenerations">
+          </label> <br><br>
+          <br>
+        
+            <button type="submit" class="btn btn-success" [disabled]="!postForm.valid">Optimize</button>
+        </form>
+      </div>
+      <div *ngIf="fittestIndividualStandardDeviation" class="col-sm">
+        <table class="table" style="text-align: center; table-layout: fixed;">
+            <thead>
+              <tr><th colspan="4" scope="col">Best Individual Liquid Potencies</th></tr>
+              <tr>
+                <th scope="col">First Period</th>
+                <th scope="col">Second Period</th>
+                <th scope="col">Third Period</th>
+                <th scope="col">Fourth Period</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td *ngFor="let liquidPotency of liquidPotencies">
+                  <a>{{liquidPotency}}</a>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+
+        <table class="table" style="text-align: center; table-layout: fixed;">
+            <thead>
+              <tr><th colspan="2" scope="col">Best Individual Results</th></tr>
+              <tr>
+                <th scope="col">Total Liquid Potency</th>
+                <th scope="col">Standard Variation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <a>{{totalLiquidPotency}}</a>
+                </td>
+                <td>
+                    <a>{{fittestIndividualStandardDeviation}}</a>
+                  </td>
+              </tr>
+            </tbody>
+        </table>
+        
+      </div>
+    </div>
+    <div class="row">
+        <div *ngIf="fittestIndividualStandardDeviation" class="col-sm">
+            <div echarts [options]="options" class="demo-chart"></div>
+            <table class="table" style="text-align: center; table-layout: fixed;">
+              <thead>
+                <tr><th colspan="7" scope="col">Best Schedule</th></tr>
+                <tr>
+                  <th scope="col">Machine 1</th>
+                  <th scope="col">Machine 2</th>
+                  <th scope="col">Machine 3</th>
+                  <th scope="col">Machine 4</th>
+                  <th scope="col">Machine 5</th>
+                  <th scope="col">Machine 6</th>
+                  <th scope="col">Machine 7</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let interval of scheduling">
+                  <td *ngFor="let char of interval.split('')">
+                    <a *ngIf="char == '0'">Manutenção</a>
+                    <a *ngIf="char == '1'">Ativa</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+    </div>
+  </div>

@@ -8,13 +8,15 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { MaximizationOfFunctionComponent } from './maximization-of-function/maximization-of-function.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MaximizationOfPotencyComponent } from './maximization-of-potency/maximization-of-potency.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SimpleExempleComponent,
     HomeComponent,
-    MaximizationOfFunctionComponent
+    MaximizationOfFunctionComponent,
+    MaximizationOfPotencyComponent
   ],
   imports: [
     BrowserModule,
