@@ -29,7 +29,7 @@ namespace backend.Models.Individuals
         public List<Interval> intervals { get; set; }
         public string GenerateIntervalString()
         {
-            int rnd = new Random().Next(0, 128);
+            int rnd = new Random().Next(0, 127);
             string intervalString = Convert.ToString(rnd, 2);
             while (intervalString.Length < this.machines.Count())
             {
