@@ -91,14 +91,14 @@ namespace backend.Services
         private List<ContinuousParametersIndividual> GenerateElitistGeneration()
         {
             var elitistGeneration = new List<ContinuousParametersIndividual>();
-            var fittestIndividuals = population.ToList().OrderBy(c => FitnessFunction(c)).ToList();
+            var fittestIndividuals = population.ToList().OrderBy(c => -FitnessFunction(c)).ToList();
             if (config.elitismRate >= 1) config.elitismRate = 1;
             var numberOfIndividuals =  Math.Round(population.Count * config.elitismRate);
             for(int count = 0; count < numberOfIndividuals; count++)
             {
-                elitistGeneration.Add(fittestIndividuals[count]);
+                elitistGeneration.Add(fittestIndividuals[count].DeepCopy());
             }
-            return elitistGeneration;
+            return elitistGeneration.ToList();
         }
 
         private ContinuousParametersIndividual Crossover(ContinuousParametersIndividual parent1, ContinuousParametersIndividual parent2, double beta)
@@ -113,14 +113,19 @@ namespace backend.Services
 
         private ContinuousParametersIndividual Mutation(ContinuousParametersIndividual individual)
         {
+            var mutatedIndividual = new ContinuousParametersIndividual();
             for (int i = 0; i < individual.Variables.Count; i++)
             {
                 if(new Random().NextDouble() <= config.mutationRate)
                 {
-                    individual.Variables[i] = individual.GenerateVariable(config.inferiorLimit, config.superiorLimit);
+                    mutatedIndividual.Variables.Add(individual.GenerateVariable(config.inferiorLimit, config.superiorLimit));
+                }
+                else
+                {
+                    mutatedIndividual.Variables.Add(individual.DeepCopy().Variables[i]);
                 }
             }
-            return individual;
+            return mutatedIndividual;
         }
 
         private void GenerateNewPopulation()
@@ -128,8 +133,8 @@ namespace backend.Services
             List<ContinuousParametersIndividual> newGeneration = GenerateElitistGeneration();
             while(newGeneration.Count < config.populationSize)
             {
-                ContinuousParametersIndividual parent1 = SelectIndividual();
-                ContinuousParametersIndividual parent2 = SelectIndividual();
+                ContinuousParametersIndividual parent1 = SelectIndividual().DeepCopy();
+                ContinuousParametersIndividual parent2 = SelectIndividual().DeepCopy();
                 ContinuousParametersIndividual child1 = new ContinuousParametersIndividual();
                 ContinuousParametersIndividual child2 = new ContinuousParametersIndividual();
                 if (new Random().NextDouble() <= config.crossoverRate)
@@ -155,7 +160,7 @@ namespace backend.Services
             List<ContinuousParametersResponse> reponses = new List<ContinuousParametersResponse> {};
             for (int count = 0; count < numberOfGenerations; count++)
             {
-                ContinuousParametersIndividual fittestIndividual = FindFittestIndividualOfGeneration();
+                ContinuousParametersIndividual fittestIndividual = FindFittestIndividualOfGeneration().DeepCopy();
                 reponses.Add(new ContinuousParametersResponse
                 {
                     Generation = count,

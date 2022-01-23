@@ -18,5 +18,9 @@ namespace backend.Models.Individuals
             var rand = new Random();
             return ((supLimit - infLimit) * rand.NextDouble()) + infLimit;
         }
+        public ContinuousParametersIndividual DeepCopy()
+        {
+            return (ContinuousParametersIndividual)this.MemberwiseClone();
+        }
     }
 }
