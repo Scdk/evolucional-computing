@@ -9,6 +9,7 @@ import { MaximizationOfFunctionComponent } from './maximization-of-function/maxi
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaximizationOfPotencyComponent } from './maximization-of-potency/maximization-of-potency.component';
+import { ContinuousParametersComponent } from './continuous-parameters/continuous-parameters.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { MaximizationOfPotencyComponent } from './maximization-of-potency/maximi
     SimpleExempleComponent,
     HomeComponent,
     MaximizationOfFunctionComponent,
-    MaximizationOfPotencyComponent
+    MaximizationOfPotencyComponent,
+    ContinuousParametersComponent
   ],
   imports: [
     BrowserModule,
