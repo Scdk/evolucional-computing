@@ -55,9 +55,9 @@
         </form>
       </div>
       <div *ngIf="fittestIndividualVariables[0]" class="col-sm">
-        <!-- <table class="table" style="text-align: center; table-layout: fixed;">
+        <table class="table" style="text-align: center; table-layout: fixed;">
             <thead>
-              <tr><th colspan="2" scope="col">Best Individual Results</th></tr>
+              <tr><th colspan="1" scope="col">Best Individual Results</th></tr>
               <tr>
                 <th scope="col">Function Value</th>
               </tr>
@@ -69,7 +69,24 @@
                 </td>
               </tr>
             </tbody>
-        </table> -->
+        </table>
+        <table class="table" style="text-align: center; table-layout: fixed;">
+          <thead>
+            <tr>
+              <th scope="col"> </th>
+            </tr>
+            <tr>
+              <th scope="col">Variables</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let variable of fittestIndividualVariables">
+              <td>
+                  <a>{{fittestIndividualValue}}</a>
+              </td>
+            </tr>
+          </tbody>
+      </table>
         
       </div>
     </div>
