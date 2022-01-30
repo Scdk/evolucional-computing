@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaximizationOfPotencyComponent } from './maximization-of-potency/maximization-of-potency.component';
 import { ContinuousParametersComponent } from './continuous-parameters/continuous-parameters.component';
+import { ConstraintHandlingComponent } from './constraint-handling/constraint-handling.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ContinuousParametersComponent } from './continuous-parameters/continuou
     HomeComponent,
     MaximizationOfFunctionComponent,
     MaximizationOfPotencyComponent,
-    ContinuousParametersComponent
+    ContinuousParametersComponent,
+    ConstraintHandlingComponent
   ],
   imports: [
     BrowserModule,

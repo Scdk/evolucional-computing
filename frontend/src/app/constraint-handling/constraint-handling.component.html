@@ -31,6 +31,11 @@
           </label> <br><br>
 
           <label>
+            <p>Penalty Constant</p>
+            <input type="text" formControlName="penaltyConstant">
+          </label> <br><br>
+
+          <label>
             <p>Number Of Variables</p>
             <input type="text" formControlName="numberOfVariables">
           </label> <br><br>
@@ -48,6 +53,11 @@
           <label>
             <p>Number Of Generation</p>
             <input type="text" formControlName="numberOfGenerations">
+          </label> <br><br>
+
+          <label>
+            <p>Challenge Flag</p>
+            <input type="text" formControlName="challengeFlag">
           </label> <br><br>
           <br>
         
@@ -82,7 +92,7 @@
           <tbody>
             <tr *ngFor="let variable of fittestIndividualVariables">
               <td>
-                  <a>{{fittestIndividualValue}}</a>
+                  <a>{{variable}}</a>
               </td>
             </tr>
           </tbody>
