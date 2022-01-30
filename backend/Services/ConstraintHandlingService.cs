@@ -55,20 +55,14 @@ namespace backend.Services
             }
         }
 
-        private List<Double> MakeListOfIndividualsFitness()
+        private double GetGenerationAvarageTargetValue()
         {
-            List<Double> populationFitness = new List<Double>{};
+            var listOfTargetValue = new List<double>();
             foreach (var individual in population)
             {
-                populationFitness.Add(FitnessFunction(individual));
+                listOfTargetValue.Add(TargetFunction(individual.Variables));
             }
-            return populationFitness;
-        }
-
-        private double GetGenerationAvarageFitness()
-        {
-            List<Double> populationFitness = MakeListOfIndividualsFitness();
-            return populationFitness.Sum() / populationFitness.Count;
+            return listOfTargetValue.Average();
         }
 
         private ContinuousParametersIndividual FindFittestIndividualOfGeneration()
@@ -179,9 +173,9 @@ namespace backend.Services
                     reponses.Add(new ConstraintHandlingResponse
                     {
                         Generation = count,
-                        FittestIndividualFitness = TargetFunctionChallenge(fittestIndividual.Variables),
+                        FittestIndividualValue = TargetFunctionChallenge(fittestIndividual.Variables),
                         FittestIndividualConstraint = ConstraintFunctionChallenge(fittestIndividual.Variables),
-                        GenerationAvarageFitness = GetGenerationAvarageTargetValue(),
+                        GenerationAvarageValue = GetGenerationAvarageTargetValue(),
                         FittestIndividualVariables = fittestIndividual.Variables
                     });
                 }
@@ -190,9 +184,9 @@ namespace backend.Services
                     reponses.Add(new ConstraintHandlingResponse
                     {
                         Generation = count,
-                        FittestIndividualFitness = TargetFunction(fittestIndividual.Variables),
+                        FittestIndividualValue = TargetFunction(fittestIndividual.Variables),
                         FittestIndividualConstraint = ConstraintFunction(fittestIndividual.Variables),
-                        GenerationAvarageFitness = GetGenerationAvarageTargetValue(),
+                        GenerationAvarageValue = GetGenerationAvarageTargetValue(),
                         FittestIndividualVariables = fittestIndividual.Variables
                     });
                 }
@@ -200,16 +194,6 @@ namespace backend.Services
                 
             }
             return reponses;
-        }
-
-        private double GetGenerationAvarageTargetValue()
-        {
-            var listOfTargetValue = new List<double>();
-            foreach (var individual in population)
-            {
-                listOfTargetValue.Add(TargetFunction(individual.Variables));
-            }
-            return listOfTargetValue.Average();
         }
 
         #region Challenge
