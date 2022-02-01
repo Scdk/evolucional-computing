@@ -1,108 +1,133 @@
 <div class="container-md" style="padding: 50px 0px;">
-    <div class="row">
-    
-      <div class="col-sm">
-        <form [formGroup]="postForm" (ngSubmit)="callingFunction()">
-          <h3>Minimization of Rastrigin Function</h3><br>    
-        
-          <label>
-            <p>Population Size</p>
-            <input type="text" formControlName="populationSize">
-          </label> <br><br>
+    <div class="col-sm">
+      <form [formGroup]="postForm" (ngSubmit)="callingFunction()">
+        <h3 style="text-align: center;">Constraint Handling</h3><br>
+        <div class="row">
+          <div class="col-sm">
+            <label>
+              <p>Population Size</p>
+              <input type="text" formControlName="populationSize">
+            </label> <br><br>
+  
+            <label>
+              <p>Crossover Rate</p>
+              <input type="text" formControlName="crossoverRate">
+            </label> <br><br>
+  
+            <label>
+              <p>Mutation Rate</p>
+              <input type="text" formControlName="mutationRate">
+            </label> <br><br>
+          </div>
+          <div class="col-sm">
+            <label>
+              <p>Elitism Rate</p>
+              <input type="text" formControlName="elitismRate">
+            </label> <br><br>
+  
+            <label>
+              <p>Tournament Rate</p>
+              <input type="text" formControlName="tournamentRate">
+            </label> <br><br>
+  
+            <label>
+              <p>Penalty Constant</p>
+              <input type="text" formControlName="penaltyConstant">
+            </label> <br><br>
+          </div>
+          <div class="col-sm">
+            <label>
+              <p>Number Of Variables</p>
+              <input type="text" formControlName="numberOfVariables">
+            </label> <br><br>
+  
+            <label>
+              <p>Inferior Limit</p>
+              <input type="text" formControlName="inferiorLimit">
+            </label> <br><br>
+  
+            <label>
+              <p>Superior Limit</p>
+              <input type="text" formControlName="superiorLimit">
+            </label> <br><br>
+          </div>
+          <div class="col-sm">
+            <label>
+              <p>Number Of Generation</p>
+              <input type="text" formControlName="numberOfGenerations">
+            </label> <br><br>
+  
+            <label>
+              <p>Challenge Flag</p>
+              <input type="text" formControlName="challengeFlag">
+            </label> <br><br>
 
-          <label>
-            <p>Crossover Rate</p>
-            <input type="text" formControlName="crossoverRate">
-          </label> <br><br>
-
-          <label>
-            <p>Mutation Rate</p>
-            <input type="text" formControlName="mutationRate">
-          </label> <br><br>
-
-          <label>
-            <p>Elitism Rate</p>
-            <input type="text" formControlName="elitismRate">
-          </label> <br><br>
-
-          <label>
-            <p>Tournament Rate</p>
-            <input type="text" formControlName="tournamentRate">
-          </label> <br><br>
-
-          <label>
-            <p>Penalty Constant</p>
-            <input type="text" formControlName="penaltyConstant">
-          </label> <br><br>
-
-          <label>
-            <p>Number Of Variables</p>
-            <input type="text" formControlName="numberOfVariables">
-          </label> <br><br>
-
-          <label>
-            <p>Inferior Limit</p>
-            <input type="text" formControlName="inferiorLimit">
-          </label> <br><br>
-
-          <label>
-            <p>Superior Limit</p>
-            <input type="text" formControlName="superiorLimit">
-          </label> <br><br>
-
-          <label>
-            <p>Number Of Generation</p>
-            <input type="text" formControlName="numberOfGenerations">
-          </label> <br><br>
-
-          <label>
-            <p>Challenge Flag</p>
-            <input type="text" formControlName="challengeFlag">
-          </label> <br><br>
-          <br>
-        
-            <button type="submit" class="btn btn-success" [disabled]="!postForm.valid">Optimize</button>
-        </form>
-      </div>
-      <div *ngIf="fittestIndividualVariables[0]" class="col-sm">
-        <table class="table" style="text-align: center; table-layout: fixed;">
-            <thead>
-              <tr><th colspan="1" scope="col">Best Individual Results</th></tr>
-              <tr>
-                <th scope="col">Function Value</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                    <a>{{fittestIndividualValue}}</a>
-                </td>
-              </tr>
-            </tbody>
-        </table>
-        <table class="table" style="text-align: center; table-layout: fixed;">
+            <button (click)="notChallenge()" class="btn btn-success" [disabled]="!postForm.valid" style="margin-top: 10%;">Optimize</button>
+            <button (click)="challenge()" class="btn btn-warning" [disabled]="!postForm.valid" style="margin-top: 10%; margin-left: 10%;">Challenge</button>
+            <br>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div *ngIf="fittestIndividualVariables[0]" class="col-sm" style="padding-top: 15px;">
+      <table class="table" style="text-align: center; table-layout: fixed;">
           <thead>
+            <tr><th colspan="2" scope="col">Best Individual Results</th></tr>
             <tr>
-              <th scope="col"> </th>
-            </tr>
-            <tr>
-              <th scope="col">Variables</th>
+              <th scope="col">Function Value</th>
+              <th scope="col">Constraint Function Value</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let variable of fittestIndividualVariables">
+            <tr>
               <td>
-                  <a>{{variable}}</a>
+                  <a>{{fittestIndividualValue}}</a>
+              </td>
+              <td>
+                  <a>{{fittestIndividualConstraintValue}}</a>
               </td>
             </tr>
           </tbody>
       </table>
-        
+      <table *ngIf="fittestIndividualVariables[0] && challengeFlag == -1" class="table" style="text-align: center; table-layout: fixed;">
+        <thead>
+          <tr>
+            <th scope="col"> </th>
+          </tr>
+          <tr>
+            <th scope="col">Variables</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let variable of fittestIndividualVariables">
+            <td>
+                <a>{{variable}}</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table *ngIf="fittestIndividualVariables[0] && challengeFlag == 1" class="table" style="text-align: center; table-layout: fixed;">
+        <thead>
+          <tr>
+            <th scope="col">Average Value</th>
+            <th scope="col">Standard Deviation Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+                <a>{{challengeAvarage}}</a>
+            </td>
+            <td>
+                <a>{{challengeStandardDeviation}}</a>
+            </td>
+          </tr>
+        </tbody>
+    </table>
+    </div>
+  </div>
+  <div class="row" style="padding-top: 15px;">
+      <div *ngIf="fittestIndividualVariables[0] && challengeFlag == -1" class="col-sm">
+          <div echarts [options]="options" class="demo-chart"></div>
       </div>
-    </div>
-    <div class="row">
-        <div *ngIf="fittestIndividualVariables[0]" class="col-sm">
-            <div echarts [options]="options" class="demo-chart"></div>
-        </div>
-    </div>
   </div>

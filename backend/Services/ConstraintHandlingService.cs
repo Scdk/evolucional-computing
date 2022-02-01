@@ -23,6 +23,13 @@ namespace backend.Services
             return GetResponses(config.numberOfGenerations);
         }
 
+        public List<ConstraintHandlingResponse> challenge(string configuration)
+        {
+            config = JsonSerializer.Deserialize<ConstraintHandlingConfiguration>(configuration);
+            GenerateInitialPopulationChallenge();
+            return GetResponsesChallenge(config.numberOfGenerations);
+        }
+
         private void GenerateInitialPopulation()
         {
             while (population.Count() < config.populationSize)
@@ -192,6 +199,28 @@ namespace backend.Services
                 }
                 GenerateNewPopulation();
                 
+            }
+            return reponses;
+        }
+
+        private List<ConstraintHandlingResponse> GetResponsesChallenge(int numberOfGenerations)
+        {
+            List<ConstraintHandlingResponse> reponses = new List<ConstraintHandlingResponse> {};
+            for (int i = 0; i < 30; i++)
+            {
+                for (int j = 0; j < numberOfGenerations; j++)
+                {
+                    GenerateNewPopulation();   
+                }
+                ContinuousParametersIndividual fittestIndividual = FindFittestIndividualOfGeneration().DeepCopy();
+                reponses.Add(new ConstraintHandlingResponse
+                {
+                    Generation = i,
+                    FittestIndividualValue = TargetFunctionChallenge(fittestIndividual.Variables),
+                    FittestIndividualConstraint = ConstraintFunctionChallenge(fittestIndividual.Variables),
+                    GenerationAvarageValue = GetGenerationAvarageTargetValue(),
+                    FittestIndividualVariables = fittestIndividual.Variables
+                });
             }
             return reponses;
         }

@@ -18,7 +18,7 @@ export class ConstHandService {
 
     constructor(private http: HttpClient) { }
 
-    post(postData: ConstHandPost){
-        return this.http.post<ConstHandResponse>(this.url, postData, {headers: this.headers});
+    post(postData: ConstHandPost, challenge: string){
+        return this.http.post<ConstHandResponse>(this.url+challenge, postData, {headers: this.headers});
     }
 }

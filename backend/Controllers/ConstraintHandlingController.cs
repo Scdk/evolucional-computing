@@ -16,4 +16,10 @@ public class ConstraintHandlingController : Controller
     {
         return Json(constraintHandling.main(JsonSerializer.Serialize(configuration)));
     }
+
+    [HttpPost("challenge")]
+    public JsonResult Challenge([FromBody]ConstraintHandlingConfiguration configuration)
+    {
+        return Json(constraintHandling.challenge(JsonSerializer.Serialize(configuration)));
+    }
 }

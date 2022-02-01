@@ -13,7 +13,11 @@ export class ConstraintHandlingComponent implements OnInit {
 
   options: any;
 	fittestIndividualVariables: number[] = [];
-  fittestIndividualValue = 0;
+  fittestIndividualValue: number = 0;
+  fittestIndividualConstraintValue: number = 0;
+  challengeFlag: number = 0;
+  challengeAvarage: number = 0;
+  challengeStandardDeviation: number = 0;
 
   postForm = this.fb.group({
     populationSize: ['500'],
@@ -25,7 +29,7 @@ export class ConstraintHandlingComponent implements OnInit {
     numberOfVariables: ['2'],
     inferiorLimit: ['-3'],
     superiorLimit: ['5'],
-	  numberOfGenerations: ['50'],
+	  numberOfGenerations: ['100'],
     challengeFlag: ['0']
   })
 
@@ -48,8 +52,39 @@ export class ConstraintHandlingComponent implements OnInit {
       numberOfGenerations: this.postForm.value.numberOfGenerations,
       challengeFlag: this.postForm.value.challengeFlag
     }
-    await this.constHandService.post(postData)
-      .subscribe((data) => this.generateGraph(data));
+    if (this.challengeFlag === 1){
+      await this.constHandService.post(postData, "")
+        .subscribe((data) => this.generateGraph(data));
+    }
+    else{
+      postData.challengeFlag = 1;
+      await this.constHandService.post(postData, "/challenge")
+        .subscribe((data) => this.fillDataChallenge(data));
+    }
+  }
+
+  notChallenge() {
+    this.challengeFlag = 1;
+    this.callingFunction();
+  }
+
+  challenge() {
+    this.challengeFlag = -1;
+    this.callingFunction();
+  }
+
+  fillDataChallenge(data: any){
+    var bestValue = data.map((x: ConstHandResponse) => 
+      x.fittestIndividualValue
+    );
+    this.fittestIndividualVariables = data[data.length - 1].fittestIndividualVariables;
+    this.fittestIndividualValue = data[data.length - 1].fittestIndividualValue;
+    this.fittestIndividualConstraintValue = data[data.length - 1].fittestIndividualConstraint;
+    this.challengeFlag = 1;
+    var bestValueSum = bestValue.reduce((a: number, b: number) => a + b, 0);
+    this.challengeAvarage = (bestValueSum / bestValue.length) || 0;
+    this.challengeStandardDeviation = Math.sqrt(bestValue.map((x: number) => Math.pow(x - this.challengeAvarage, 2)).reduce((a: number, b: number) => a + b) / bestValue.length)
+
   }
 
   generateGraph(data: any){
@@ -64,6 +99,8 @@ export class ConstraintHandlingComponent implements OnInit {
     );
     this.fittestIndividualVariables = data[data.length - 1].fittestIndividualVariables;
     this.fittestIndividualValue = data[data.length - 1].fittestIndividualValue;
+    this.fittestIndividualConstraintValue = data[data.length - 1].fittestIndividualConstraint;
+    this.challengeFlag = -1;
 
     this.options = {
       title: {
