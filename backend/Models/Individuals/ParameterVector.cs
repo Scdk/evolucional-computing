@@ -1,14 +1,14 @@
 namespace backend.Models.Individuals
 {
-    public class ContinuousParametersIndividual
+    public class ParameterVector
     {
         public List<double> Variables { get; set; } = new List<double>();
 
         #region Constructors
 
-        public ContinuousParametersIndividual() { }
+        public ParameterVector() { }
 
-        public ContinuousParametersIndividual(int numberOfVariables, double infLimit, double supLimit)
+        public ParameterVector(int numberOfVariables, double infLimit, double supLimit)
         {
             for (int count = 0; count < numberOfVariables; count++)
             {
@@ -26,9 +26,9 @@ namespace backend.Models.Individuals
             return ((supLimit - infLimit) * rand.NextDouble()) + infLimit;
         }
         
-        public ContinuousParametersIndividual DeepCopy()
+        public ParameterVector DeepCopy()
         {
-            return (ContinuousParametersIndividual)this.MemberwiseClone();
+            return (ParameterVector)this.MemberwiseClone();
         }
 
         #endregion
