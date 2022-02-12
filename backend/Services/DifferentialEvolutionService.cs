@@ -146,13 +146,5 @@ namespace backend.Services
             }
             return reponses;
         }
-
-        public void test(string configuration)
-        {
-            config = JsonSerializer.Deserialize<DifferentialEvolutionConfiguration>(configuration);
-            GenerateInitialPopulation();
-            Console.WriteLine(TargetFuntion(new List<double>{1, 1}));
-            Console.WriteLine(FitnessFunction(population[0]));
-        }
     }
 }

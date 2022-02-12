@@ -16,10 +16,4 @@ public class DifferentialEvolutionController : Controller
     {
         return Json(differentialEvolution.main(JsonSerializer.Serialize(configuration)));
     }
-
-    [HttpPost("test")]
-    public void Test([FromBody]DifferentialEvolutionConfiguration configuration)
-    {
-        differentialEvolution.test(JsonSerializer.Serialize(configuration));
-    }
 }

@@ -1,0 +1,89 @@
+<div class="container-md" style="padding: 50px 0px;">
+    <div class="col-sm">
+      <form [formGroup]="postForm" (ngSubmit)="callingFunction()">
+        <h3 style="text-align: center;">Differential Evolution</h3><br>
+        <div class="row">
+          <div class="col-sm">
+            <label>
+              <p>Population Size</p>
+              <input type="text" formControlName="populationSize">
+            </label> <br><br>
+  
+            <label>
+              <p>Crossover Rate</p>
+              <input type="text" formControlName="crossoverRate">
+            </label> <br><br>
+  
+            <label>
+              <p>Number Of Variables</p>
+              <input type="text" formControlName="numberOfVariables">
+            </label> <br><br>
+          
+            <label>
+              <p>Inferior Limit</p>
+              <input type="text" formControlName="inferiorLimit">
+            </label> <br><br>
+  
+            </div>
+          <div class="col-sm">
+            <label>
+              <p>Superior Limit</p>
+              <input type="text" formControlName="superiorLimit">
+            </label> <br><br>
+
+            <label>
+              <p>F Value</p>
+              <input type="text" formControlName="fValue">
+            </label> <br><br>
+
+            <label>
+              <p>Number Of Generation</p>
+              <input type="text" formControlName="numberOfGenerations">
+            </label> <br><br>
+
+            <button type="submit" class="btn btn-success" [disabled]="!postForm.valid" style="margin-top: 4.75%;">Optimize</button>
+            <br>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div *ngIf="fittestIndividualVariables[0]" class="col-sm" style="padding-top: 15px;">
+      <table class="table" style="text-align: center; table-layout: fixed;">
+          <thead>
+            <tr><th colspan="1" scope="col">Best Individual Results</th></tr>
+            <tr>
+              <th scope="col">Function Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                  <a>{{fittestIndividualValue}}</a>
+              </td>
+            </tr>
+          </tbody>
+      </table>
+      <table *ngIf="fittestIndividualVariables[0]" class="table" style="text-align: center; table-layout: fixed;">
+        <thead>
+          <tr>
+            <th scope="col"> </th>
+          </tr>
+          <tr>
+            <th scope="col">Variables</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let variable of fittestIndividualVariables">
+            <td>
+                <a>{{variable}}</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row" style="padding-top: 15px;">
+      <div *ngIf="fittestIndividualVariables[0]" class="col-sm">
+          <div echarts [options]="options" class="demo-chart"></div>
+      </div>
+  </div>

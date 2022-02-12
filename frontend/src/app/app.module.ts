@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaximizationOfPotencyComponent } from './maximization-of-potency/maximization-of-potency.component';
 import { ContinuousParametersComponent } from './continuous-parameters/continuous-parameters.component';
 import { ConstraintHandlingComponent } from './constraint-handling/constraint-handling.component';
+import { DifferentialEvolutionComponent } from './differential-evolution/differential-evolution.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ConstraintHandlingComponent } from './constraint-handling/constraint-ha
     MaximizationOfFunctionComponent,
     MaximizationOfPotencyComponent,
     ContinuousParametersComponent,
-    ConstraintHandlingComponent
+    ConstraintHandlingComponent,
+    DifferentialEvolutionComponent
   ],
   imports: [
     BrowserModule,
